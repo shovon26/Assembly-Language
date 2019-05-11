@@ -1,0 +1,42 @@
+; INPUT A BINARY NUMBER AND PRINT ITS DECIMAL VALUE
+
+INCLUDE 'EMU8086.INC'
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+
+.CODE
+
+MAIN PROC
+
+MOV AX, @DATA
+MOV DS, AX
+    
+    
+    MOV BX , 0
+    MOV AH , 0
+    FOR1:
+    INT 21H
+    CMP AL,0DH ;ITS A ENTER
+    JE END_FOR1
+    SUB AL,48
+    SHL BX,1
+    OR BL,AL
+    JMP FOR1
+    
+    END_FOR1:
+    
+    PRINTN
+        
+        MOV AH , 2
+        MOV DL , BL
+        INT 21H
+    
+    
+
+        MOV AH, 4CH
+        INT 21H
+     MAIN ENDP
+
+END MAIN
